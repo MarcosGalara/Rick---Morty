@@ -64,5 +64,6 @@ export const CloseCard = styled.button`
 // alinear tarjetas
 export const Conteiner = styled.div`
    display: flex;
-   justify-content: center;
+   justify-content: space-around;
+   flex-wrap: wrap;
 `

@@ -1,9 +1,13 @@
 import styled from "styled-components";
-
-const divNav = styled.div`
+//NAVEGADOR
+export const DivNav = styled.div`
     display: flex;
-    background: brown;
-    
+    justify-content: end;
 `
-export {divNav};
+
+//BOTON DEL NAVEGADOR
+export const StyleButton = styled.button`
+    background-color: green;
+    `
+
 
