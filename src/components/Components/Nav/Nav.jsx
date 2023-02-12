@@ -1,6 +1,8 @@
 import React from "react";
-import SearchBar from "./SearchBar.jsx";
-import { DivNav } from "../Style-Components/estilosSearch";
+import SearchBar from "../SearchBar/SearchBar.jsx";
+import { DivNav } from "../SearchBar/estilosSearch";
+
+
 
 
 export default function Nav(props){

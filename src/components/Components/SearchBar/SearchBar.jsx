@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleButton } from "../Style-Components/estilosSearch.jsx"
+import { StyleButton } from "./estilosSearch.jsx"
 
 export default function SearchBar(props) {
    return (
