@@ -1,8 +1,10 @@
-import { ADD_FAVORITES, DELETE_FAVORITES } from "../actions-type/types.js";
+import { ADD_FAVORITES, DELETE_FAVORITES, FILTER_CARDS, ORDER_CARDS } from "../actions-type/types.js";
 
 
 const initialState = {
     myFavorites: [],
+    allCharacters: [],
+    allFavs: [],
 }
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -10,8 +12,23 @@ const reducer = (state = initialState, { type, payload }) => {
         case ADD_FAVORITES:
             return{
                 ...state,
-                myFavorites: [...state.myFavorites, payload]
+                myFavorites: [...state.allCharacters, payload],
+                allCharacters: [...state.allCharacters, payload]
             };
+        case FILTER_CARDS:
+            const allCharsFiltered = state.allCharacters.filter(char => char.gender === payload)
+            return{
+                ...state,
+                myFavorites: allCharsFiltered
+            }
+        case ORDER_CARDS:
+            return{
+                ...state,
+                myFavorites:
+                    payload === "Ascendente"
+                    ? state.allCharacters.sort((a, b) => a.id - b.id)
+                    : state.allCharacters.sort((a, b) => b.id - a.id)
+            }
         case DELETE_FAVORITES:
             return{
                 ...state,
