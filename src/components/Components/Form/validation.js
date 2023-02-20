@@ -1,6 +1,6 @@
 const regexEmail = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
 
-export const Validation = (username, password) =>{
+const validation = (username, password) =>{
 
     const errors  = {};
     
@@ -22,6 +22,7 @@ export const Validation = (username, password) =>{
     return errors;
 }
 
+export default validation;
 
 
 

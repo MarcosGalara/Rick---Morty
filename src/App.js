@@ -1,12 +1,14 @@
-import './App.css'
+import './App.css';
 import React from  "react";
-import Cards from './components/Components/Cards/Cards.jsx'
-import Nav from "./components/Components/Nav/Nav.jsx"
+import Cards from './components/Components/Cards/Cards.jsx';
+import Nav from "./components/Components/NavBar/Nav.jsx";
 import { useState, useEffect } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom"
-import Detail from "./components/Components/Detail/Detail.jsx"
-import About from "./components/Components/About/About.jsx"
-import Form from "./components/Form/Form.jsx";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import Detail from "./components/Components/CardDetail/CardDetail.jsx";
+import About from "./components/Components/About/About.jsx";
+import Form from "./components/Components/Form/Form.jsx";
+import Error404 from './components/Components/Error404/Error404';
+import Favorites from './components/Components/Favorites/Favorites.jsx';
 
 
 function App () {
@@ -14,6 +16,8 @@ function App () {
   const [characters, setCharacters] = useState([]);
   const [inputChar, setInputChar] = useState("");
   //LOGIN
+  const location = useLocation();
+
   const [access, setAccess] = useState(false);
   const username = "marcos.galara08@gmail.com";
   const password = "asd123";
@@ -31,16 +35,16 @@ function App () {
 			});
 	}
 
-  function login(userData) {
-    if (userData.password === password && userData.username === username) {
+  const login = (userData) => {
+    if (userData.username === username && userData.password === password) {
       setAccess(true);
-      navigate('/');
+      navigate('/home');
     }
   }
 //evitamos que vaya al buscador de cartas cuando haya puesto mal el user y/o pass
   useEffect(() => {
     !access && navigate('/');
-  }, [access]);
+  }, [access, navigate]);
 
 
   let handleChange = (event) =>{
@@ -53,24 +57,25 @@ function App () {
 
   let onClose = (event) => {
     setCharacters(
-      characters.filter(
-        (character) => character.id !== Number(event.currentTarjet.value),
-      ),
+      (character) => character.id !== Number(event.currentTarget.value),
     );
   };
 
   console.log(characters)
   return (
     <>
-      <Nav  handleChange={handleChange} handleAddChar={handleAddChar}/>
+    <div className="App" style={{padding: "25px"} } >
+      {location.pathname === "/" ? <Form login={login} /> : <Nav  handleChange={handleChange} handleAddChar={handleAddChar}/>}
       <Routes>
-        <Route path="/home" element={<Form login={login}/>}/>
-        <Route path="/" element ={<Cards characters={characters} onClose={onClose}/>}/>
-        <Route path="/about" element={<About/>}/>
-        <Route path="/detail/:detailId" element={<Detail />}/>
+        <Route path="/favorites" element={<Favorites />}></Route>
+        <Route path="*" element={<Error404 />} />
+        <Route path='/home' element={<Cards characters={characters} onClose={onClose} />}> </Route>
+        <Route path='/about' element={<About />}></Route>
+        <Route path='/detail/:detailId' element={<Detail />}> </Route>
       </Routes>
+      </div>
     </>
   )
 }
 
-export default App
+export default App;

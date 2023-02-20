@@ -3,8 +3,9 @@ import { Conteiner } from '../Card/estilosCard';
 import React from "react";
 
 export default function Cards(props) {
+
    const { characters } = props; //characters es un array que cada elemento es un objeto
-   console.log(characters.id)
+   
    return( 
       <Conteiner>
          {
@@ -17,7 +18,7 @@ export default function Cards(props) {
                gender = {gender}
                image = {image}
                status={status}
-               onClose = {onClose}
+               onClose = {() => onClose(id)}
                />
             })
          }
