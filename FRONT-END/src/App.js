@@ -19,12 +19,12 @@ function App () {
   const location = useLocation();
 
   const [access, setAccess] = useState(false);
-  const username = "marcos.galara08@gmail.com";
-  const password = "asd123";
+  const username = "";
+  const password = "";
   const navigate =  useNavigate();
 
   let onSearch = (id) => {
-		fetch(`https://rickandmortyapi.com/api/character/${id}`)
+		fetch(`https://localhost:3001/rickandmorty/onsearch/${id}`)
 			.then((response) => response.json())
 			.then((data) => {
 				data.name

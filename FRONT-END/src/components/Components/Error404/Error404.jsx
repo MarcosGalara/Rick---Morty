@@ -4,19 +4,19 @@ import { NavLink } from "react-router-dom";
 const Error404 = () => {
     return(
         <>
-        <div class="background-img">
-            <div class="space"></div>
-            <div class="wrapper">
-                <div class="img-wrapper">
+        <div className="background-img">
+            <div className="space"></div>
+            <div className="wrapper">
+                <div className="img-wrapper">
                     <span>Error 404</span>
                 </div>
                 <p>
-                    Has en entrado en una dimensión, realidad o planeta que no existe.{' '}
+                    Has en entrado en un sitio que no corresponde.{' '}
                     <br />
-                    Toca el portal para volver a la Tierra (C-137)
+                    Toca el boton para volver al inicio
                 </p>
                 <NavLink to="/home">
-                    <button type="button">Portal a la Tierra (C-137)</button>
+                    <button type="button">Volver al inicio</button>
                 </NavLink>
             </div>
         </div>

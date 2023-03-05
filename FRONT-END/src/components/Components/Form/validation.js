@@ -6,16 +6,20 @@ const validation = (username, password) =>{
     
     if(!username){
         errors.username = "Este campo no puede estar vacío"
-    }else if(!regexEmail.test(username)){
+    }
+    if(!regexEmail.test(username)){
         errors.username = "Tiene que ser un email."
-    }else if(!username.length > 35){
+    }
+    if(!username.length > 35){
         errors.username = "Debe tener menos de 35 caracteres"
     }
     if(!password){
         errors.password = "Este campo no puede estar vacío"
-    }else if(!/\d/.test(password)){
+    }
+    if(!/\d/.test(password)){
         errors.password = "Tiene que tener al menos un número."
-    }else if(password.length < 6 || password.length > 10){
+    }
+    if(password.length < 6 || password.length > 10){
         errors.password = "La contraseña debe tener una longitud entre 6 y 10 caracteres"
     }
     
