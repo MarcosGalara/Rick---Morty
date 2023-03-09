@@ -1,14 +1,14 @@
 import './App.css';
 import React from  "react";
-import Cards from './components/Components/Cards/Cards.jsx';
-import Nav from "./components/Components/NavBar/Nav.jsx";
+import Cards from './components/Cards/Cards.jsx';
+import Nav from "./components/NavBar/Nav.jsx";
 import { useState, useEffect } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
-import Detail from "./components/Components/CardDetail/CardDetail.jsx";
-import About from "./components/Components/About/About.jsx";
-import Form from "./components/Components/Form/Form.jsx";
-import Error404 from './components/Components/Error404/Error404';
-import Favorites from './components/Components/Favorites/Favorites.jsx';
+import Detail from "./components/CardDetail/CardDetail.jsx";
+import About from "./components/About/About.jsx";
+import Form from "./components/Form/Form.jsx";
+import Error404 from './components/Error404/Error404';
+import Favorites from './components/Favorites/Favorites.jsx';
 
 
 function App () {
@@ -18,7 +18,7 @@ function App () {
   //LOGIN
   const location = useLocation();
 
-  const [access, setAccess] = useState(false);
+  const [access, setAccess] = useState(true);
   const username = "";
   const password = "";
   const navigate =  useNavigate();
@@ -61,17 +61,19 @@ function App () {
     );
   };
 
-  console.log(characters)
+  
   return (
     <>
     <div className="App" style={{padding: "25px"} } >
       {location.pathname === "/" ? <Form login={login} /> : <Nav  handleChange={handleChange} handleAddChar={handleAddChar}/>}
       <Routes>
+        {/* <Route path="*" element={<Error404 />} /> */}
         <Route path="/favorites" element={<Favorites />}></Route>
-        <Route path="*" element={<Error404 />} />
+        
         <Route path='/home' element={<Cards characters={characters} onClose={onClose} />}> </Route>
         <Route path='/about' element={<About />}></Route>
         <Route path='/detail/:detailId' element={<Detail />}> </Route>
+        
       </Routes>
       </div>
     </>

@@ -6,30 +6,7 @@ const cors = require("cors")
 app.use(cors())
 app.use(express.json());
 
-app.get("/rickandmorty/character/:id" ,async (req, res) =>{
-    
-    
-    try {
-        const { id } = req.params;
 
-        const response = await axios(`https://rickandmortyapi.com/api/character/${id}`)
-
-        const data = response.data
-
-        const infoCharacter = {
-            id: data.id,
-            name: data.name,
-            species: data.species,
-            gender: data.gender,
-            image: data.image
-        }
-
-        res.status(200).json(infoCharacter);
-
-    } catch (error) {
-        res.status(500).json(error.message)
-    }
-})
 
 app.get("/rickandmorty/detail/:detailId", async (req, res)=>{
     
